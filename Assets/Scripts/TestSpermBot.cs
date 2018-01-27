@@ -36,6 +36,5 @@ public class TestSpermBot : MonoBehaviour
         initingCount--;
         yield return new WaitWhile(() => initingCount > 0);
         agent.speed = Random.Range(minSpeed, maxSpeed);
-
     }
 }
