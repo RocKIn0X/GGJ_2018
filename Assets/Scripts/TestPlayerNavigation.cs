@@ -8,10 +8,13 @@ using UnityEngine.AI;
 public class TestPlayerNavigation : MonoBehaviour {
     RaycastHit hitInfo = new RaycastHit();
     NavMeshAgent agent;
+    [SerializeField]
+    private Transform targetDestination;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.destination = targetDestination.position;
     }
 
     void Update()
