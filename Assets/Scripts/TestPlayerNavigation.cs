@@ -14,7 +14,8 @@ public class TestPlayerNavigation : MonoBehaviour {
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = targetDestination.position;
+        if(targetDestination != null)
+            agent.destination = targetDestination.position;
     }
 
     void Update()

@@ -56,7 +56,7 @@ public class SpermMovement : MonoBehaviour {
         head.transform.localEulerAngles = new Vector3(0f, 0f, headRotation);
         tail.transform.localEulerAngles = new Vector3(0f, 0f, tailRotation);
 
-        Debug.Log(rigidbody.velocity.magnitude); 
+        //Debug.Log(rigidbody.velocity.magnitude); 
     }
 
     void PushInTailDirection()
