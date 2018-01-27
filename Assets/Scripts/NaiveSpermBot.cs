@@ -8,8 +8,8 @@ public class NaiveSpermBot : MonoBehaviour
     [SerializeField]
     private Rigidbody rigidbody;
     private bool started = false;
-    private const float force = 30;
-    private const float angularMaxAmp = 100;
+    private const float force = 25;
+    private const float angularMaxAmp = 150;
 
     private float angularAmp;
     private float xRatio = 0;
@@ -33,6 +33,7 @@ public class NaiveSpermBot : MonoBehaviour
         xRatio += Time.deltaTime/2;
         rigidbody.AddRelativeForce(Vector3.forward*force*Time.deltaTime);
         rigidbody.AddRelativeForce(new Vector3( Mathf.Sin(xRatio)*angularAmp ,0,0)*Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
     }
 
     // ==================
@@ -48,7 +49,7 @@ public class NaiveSpermBot : MonoBehaviour
     public void BurstWhenReady()
     {
         rigidbody.isKinematic = false;
-        rigidbody.velocity = new Vector3(0, 0, 15);
+        rigidbody.velocity = new Vector3(0, 0, 12);
         //StartCoroutine(init());
     }
 

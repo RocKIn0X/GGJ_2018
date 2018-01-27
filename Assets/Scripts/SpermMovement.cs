@@ -103,4 +103,11 @@ public class SpermMovement : MonoBehaviour {
 
         rigidbody.velocity = adjustedVelo;
     }
+
+    public void Die()
+    {
+        rigidbody.constraints = RigidbodyConstraints.None;
+        rigidbody.mass = 0.1f;
+
+    }
 }
