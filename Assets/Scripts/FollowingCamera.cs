@@ -9,17 +9,27 @@ public class FollowingCamera : MonoBehaviour
     private bool setAtBeginning;
     [SerializeField]
     private bool xyCoord = true;
+    [SerializeField]
+    private bool tps = false;
 
+    private Vector3 originalDist;
     private const float followSpeed = 3f;
 
     private void Awake()
     {
         if (setAtBeginning)
             SetXYPosition(targetTransform.position);
+
+        originalDist = transform.position - targetTransform.position;
     }
 
     private void LateUpdate()
     {
+        if(tps)
+        {
+            transform.position = targetTransform.position + originalDist;
+            return;
+        }
         LerpTo(targetTransform.position);
     }
 
