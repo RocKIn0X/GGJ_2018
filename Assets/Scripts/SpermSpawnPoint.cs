@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpermSpawnPoint : MonoBehaviour 
 {
-    private const float spawnRadius = 3;
+    private const float spawnRadius = 7;
 
     public Vector3 GenerateSpawnPosition()
     {
@@ -18,10 +18,10 @@ public class SpermSpawnPoint : MonoBehaviour
 
     public Quaternion CalculateRotation(Vector3 spawnPos)
     {
-        return Quaternion.LookRotation(CalculateDirection(spawnPos));
+        return Quaternion.LookRotation(CalculateExplosionDirection(spawnPos));
     }
 
-    public Vector3 CalculateDirection(Vector3 spawnPos)
+    public Vector3 CalculateExplosionDirection(Vector3 spawnPos)
     {
         Vector3 currentPos = GetPosition();
         Vector3 delta = spawnPos - currentPos;

@@ -11,10 +11,10 @@ public class SpermMovement : MonoBehaviour {
 
     private Rigidbody rigidbody;
 
-    private const float force = 50;
+    private const float force = 60;
     private const float flickSensitivity = 450;
     private const float flickBoost = 5f;
-    private const float speedLimit = 8f;
+    private const float speedLimit = 6f;
 
     private void Awake()
     {
@@ -70,15 +70,15 @@ public class SpermMovement : MonoBehaviour {
         float tailMultiplier = isFlicking? flickBoost : 1;
 
         rigidbody.AddForceAtPosition(head.transform.GetChild(0).transform.up * force * tailMultiplier * Time.deltaTime, head.transform.position);
-        rigidbody.AddForceAtPosition(tail.transform.GetChild(0).transform.up * force * tailMultiplier * Time.deltaTime, tail.transform.position);
+        //rigidbody.AddForceAtPosition(tail.transform.GetChild(0).transform.up * force * tailMultiplier * Time.deltaTime, tail.transform.position);
         //this.transform.position += tail.transform.up * speed * Time.deltaTime;
     }
 
     private void ClampVelocity()
     {
-        Vector2 currentVelo = rigidbody.velocity;
+        Vector3 currentVelo = rigidbody.velocity;
         float veloMagnitude = currentVelo.magnitude;
-        Vector2 adjustedVelo;
+        Vector3 adjustedVelo;
 
         if (veloMagnitude >= speedLimit)
             adjustedVelo = currentVelo * speedLimit / veloMagnitude;

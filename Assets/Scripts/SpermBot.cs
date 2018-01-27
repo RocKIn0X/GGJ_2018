@@ -8,10 +8,9 @@ public class SpermBot : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent agent;
-    [SerializeField]
-    private Rigidbody rigidbody;
 
     private const float force = 100;
+    private bool naive = false;
 
     // =============
     // behaviour
@@ -19,20 +18,25 @@ public class SpermBot : MonoBehaviour
     private void OnValidate()
     {
         agent = GetComponent<NavMeshAgent>();
-        rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    // ================
+    // public interfaces
+    // ================
+    private Vector3 tempTargetPos;
+    private Vector3 tempExplosionForce;
+    private float tempSpeed;
+
+    public void InitEssentialValues(Vector3 targetPos, Vector3 explosionForce, float speed)
     {
-        if (Input.GetKey("up"))
-            rigidbody.AddForce(Vector3.forward * force);
-        else if (Input.GetKey("left"))
-            rigidbody.AddForce(Vector3.left * force);
+        tempSpeed = speed;
+        tempTargetPos = targetPos;
+        tempExplosionForce = explosionForce;
     }
 
-    public void SetTargetPosition(Vector3 targetPosition)
+    public void BurstWhenReady()
     {
-        agent.SetDestination(targetPosition);
+        StartCoroutine(init());
     }
 
     public bool SetTargetFinished()
@@ -40,14 +44,18 @@ public class SpermBot : MonoBehaviour
         return agent.hasPath;  
     }
 
-    public void SetInitialVelocity(Vector3 velo)
-    {
-        rigidbody.velocity = velo;
-        //agent.velocity = velo;
-    }
+    public static int initingCount = 0;
 
-    public void SetSpeed(float speed)
+    public IEnumerator init()
     {
-        agent.speed = speed;
+        initingCount++;
+        yield return null;
+        agent.speed = 0;
+        agent.SetDestination(tempTargetPos);
+
+        yield return new WaitWhile(() => !SetTargetFinished());
+        initingCount--;
+        yield return new WaitWhile(() => initingCount > 0);
+        agent.speed = tempSpeed;
     }
 }
