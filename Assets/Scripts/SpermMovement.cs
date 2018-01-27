@@ -22,6 +22,8 @@ public class SpermMovement : MonoBehaviour {
         tail = this.gameObject.transform.GetChild(1).gameObject;
 
         rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.velocity = Vector3.forward * 7;
     }
     
 	void Update () {
@@ -30,20 +32,34 @@ public class SpermMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A)) {
             headRotation -= Time.deltaTime * flickSensitivity;
-//            headRotation = -90f;
+            if (Input.GetKey(KeyCode.D))
+            {
+                tailRotation -= Time.deltaTime * flickSensitivity;
+            }
+            else
+            {
+                tailRotation += Time.deltaTime * flickSensitivity;
+            }
         } else{
             headRotation += Time.deltaTime * flickSensitivity;
-//            headRotation = 0f;
+            if (Input.GetKey(KeyCode.D))
+            {
+                tailRotation += Time.deltaTime * flickSensitivity;
+            }
+            else
+            {
+                tailRotation -= Time.deltaTime * flickSensitivity;
+            }
         }
 
         headRotation = Mathf.Clamp(headRotation, -45, 45);
         
 
-        if (Input.GetKey(KeyCode.D)) {
-            tailRotation += Time.deltaTime * flickSensitivity;
-        } else {
-            tailRotation -= Time.deltaTime * flickSensitivity;
-        }
+        //if (Input.GetKey(KeyCode.D)) {
+        //    tailRotation += Time.deltaTime * flickSensitivity;
+        //} else {
+        //    tailRotation -= Time.deltaTime * flickSensitivity;
+        //}
 
         tailRotation = Mathf.Clamp(tailRotation, -45, 45);
         //if (headRotation - tailRotation > 0) {

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpermSpawnPoint : MonoBehaviour 
 {
-    private const float spawnRadius = 7;
+    private const float spawnRadius = 3;
 
     public Vector3 GenerateSpawnPosition()
     {
-        return GetPosition() + new Vector3(Random.Range(-spawnRadius,spawnRadius), 0, 0) + new Vector3(0, 0, Random.Range(-spawnRadius,spawnRadius));   
+        return GetPosition() + new Vector3(Random.Range(-spawnRadius/5,spawnRadius/5), 0, 0) + new Vector3(0, 0, Random.Range(spawnRadius/1.5f,spawnRadius));   
     }
 
     private Vector3 GetPosition()

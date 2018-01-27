@@ -9,9 +9,10 @@ public class NaiveSpermBot : MonoBehaviour
     private Rigidbody rigidbody;
     private bool started = false;
     private const float force = 30;
-    private const float angularMaxAmp = 50;
+    private const float angularMaxAmp = 100;
 
     private float angularAmp;
+    private float xRatio = 0;
 
     // =============
     // behaviour
@@ -24,12 +25,14 @@ public class NaiveSpermBot : MonoBehaviour
     private void Awake()
     {
         angularAmp = Random.Range(-angularMaxAmp, angularMaxAmp);
+        xRatio = Random.Range(0, 100);
     }
 
     private void Update()
     {
+        xRatio += Time.deltaTime/2;
         rigidbody.AddRelativeForce(Vector3.forward*force*Time.deltaTime);
-        rigidbody.AddRelativeForce(new Vector3(0,0,0)*Time.deltaTime);
+        rigidbody.AddRelativeForce(new Vector3( Mathf.Sin(xRatio)*angularAmp ,0,0)*Time.deltaTime);
     }
 
     // ==================
@@ -44,15 +47,17 @@ public class NaiveSpermBot : MonoBehaviour
 
     public void BurstWhenReady()
     {
-        StartCoroutine(init());
+        rigidbody.isKinematic = false;
+        rigidbody.velocity = new Vector3(0, 0, 15);
+        //StartCoroutine(init());
     }
 
     public IEnumerator init()
     {
-        rigidbody.isKinematic = true;
-        yield return null;
-        yield return new WaitWhile(() => SpermBot.initingCount > 0);
-        started = true;
         rigidbody.isKinematic = false;
+        yield return null;
+        //yield return new WaitWhile(() => SpermBot.initingCount > 0);
+        started = true;
+        //rigidbody.isKinematic = false;
     }
 }
