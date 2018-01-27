@@ -16,7 +16,7 @@ public class FollowingCamera : MonoBehaviour
             SetXYPosition(targetTransform.position);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         LerpTo(targetTransform.position);
     }
