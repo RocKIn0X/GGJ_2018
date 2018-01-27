@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: b897c5d23d8864baaaa99de989d18404
+  - enabled: 1
+    path: Assets/Scenes/TestSpermControl.unity
+    guid: 2d1e5074c25e8314da4dc8276bbab897
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: c9ae15506e948e44cb688df20255685c
