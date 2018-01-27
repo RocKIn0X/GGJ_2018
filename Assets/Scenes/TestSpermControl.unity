@@ -2263,6 +2263,26 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114202616007659604, guid: 7904746a44e6044ec9837bfc5193cb7b,
+        type: 2}
+      propertyPath: minY
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202616007659604, guid: 7904746a44e6044ec9837bfc5193cb7b,
+        type: 2}
+      propertyPath: maxY
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202616007659604, guid: 7904746a44e6044ec9837bfc5193cb7b,
+        type: 2}
+      propertyPath: startZ
+      value: -68
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202616007659604, guid: 7904746a44e6044ec9837bfc5193cb7b,
+        type: 2}
+      propertyPath: endZ
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7904746a44e6044ec9837bfc5193cb7b, type: 2}
   m_IsPrefabParent: 0

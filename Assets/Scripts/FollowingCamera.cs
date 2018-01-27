@@ -11,6 +11,8 @@ public class FollowingCamera : MonoBehaviour
     private bool xyCoord = true;
     [SerializeField]
     private bool tps = false;
+    [SerializeField]
+    private float minY, maxY, startZ, endZ;
 
     private Vector3 originalDist;
     private const float followSpeed = 3f;
@@ -31,6 +33,10 @@ public class FollowingCamera : MonoBehaviour
             return;
         }
         LerpTo(targetTransform.position);
+
+        Vector3 currentPos = transform.position;
+        currentPos.y = Mathf.Lerp(minY,maxY,(transform.position.z - startZ)/(endZ-startZ));
+        transform.position = currentPos;
     }
 
     private void LerpTo(Vector3 targetPos)
