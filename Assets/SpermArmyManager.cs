@@ -13,7 +13,7 @@ public class SpermArmyManager : MonoBehaviour
     private const float minExplosion = 0, maxExplosion = 0;
 
     private const int numSmartSperm = 10;
-    private const int numNaiveSperm = 300;
+    private const int numNaiveSperm = 100;
 
     private void Awake()
     {
