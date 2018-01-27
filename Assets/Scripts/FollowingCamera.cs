@@ -7,8 +7,6 @@ public class FollowingCamera : MonoBehaviour
 
     [SerializeField]
     private bool setAtBeginning;
-    [SerializeField]
-    private bool xyCoord = true;
 
     private const float followSpeed = 3f;
 
@@ -23,29 +21,18 @@ public class FollowingCamera : MonoBehaviour
         LerpTo(targetTransform.position);
     }
 
-    private void LerpTo(Vector3 targetPos)
+    private void LerpTo(Vector2 targetPos)
     {
-        Vector3 originalPos = transform.position;
-        Vector3 lerpedPos;
-        lerpedPos = Vector3.Lerp(originalPos, targetPos, Time.deltaTime * followSpeed);
-            
+        Vector2 originalPos = transform.position;
+        Vector2 lerpedPos = Vector2.Lerp(originalPos, targetPos,Time.deltaTime*followSpeed);
         SetXYPosition(lerpedPos);
     }
 
-    private void SetXYPosition(Vector3 newXYZ)
+    private void SetXYPosition(Vector3 newXY)
     {
         Vector3 newPos = transform.position;
-        if (xyCoord)
-        {
-            newPos.x = newXYZ.x;
-            newPos.y = newXYZ.y;
-        }
-        else
-        {
-            newPos.x = newXYZ.x;
-            newPos.z = newXYZ.z;
-        }
-
+        newPos.x = newXY.x;
+        newPos.y = newXY.y;
         transform.position = newPos;
     }
 }

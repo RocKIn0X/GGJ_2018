@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ChangeSceneButton : MonoBehaviour
-{
+public class ChangeSceneButton : MonoBehaviour {
     [SerializeField]
     private string targetSceneName;
 
