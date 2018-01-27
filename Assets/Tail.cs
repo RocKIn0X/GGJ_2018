@@ -31,7 +31,14 @@ public class Tail : MonoBehaviour {
         while (transform.childCount > 0)
         {
             currentTrans.localEulerAngles = new Vector3(0, ratio * amp, 0);
-            currentTrans = currentTrans.GetChild(0);
+            try
+            {
+                currentTrans = currentTrans.GetChild(0);
+            }
+            catch(System.Exception e)
+            {
+                break;
+            }
         }
     }
 }
