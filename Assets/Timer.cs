@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
-    public float timeLimit = 110;
+    public float timeLimit = 120;
     public string prefix = " time left : ";
     private float timeCounter = 0;
     private Text text;
