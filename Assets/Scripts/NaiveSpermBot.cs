@@ -61,4 +61,17 @@ public class NaiveSpermBot : MonoBehaviour
         started = true;
         //rigidbody.isKinematic = false;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ovum")
+        {
+            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 2)
+            {
+                print("skdjfskdhjf");
+                rigidbody.AddForce(collision.transform.forward * 2500);
+            }
+            //return;
+        }
+    }
 }

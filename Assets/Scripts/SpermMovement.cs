@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpermMovement : MonoBehaviour {
 
@@ -114,5 +115,16 @@ public class SpermMovement : MonoBehaviour {
         rigidbody.constraints = RigidbodyConstraints.None;
         rigidbody.mass = 0.1f;
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("player hit : " + collision.gameObject.tag);
+        if(collision.gameObject.tag == "Ovum")
+        {
+            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 1)
+            SceneManager.LoadScene("Victory");
+            //return;   
+        }
     }
 }

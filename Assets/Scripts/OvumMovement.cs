@@ -7,6 +7,7 @@ public class OvumMovement : MonoBehaviour {
     public float force;
     public float torque;
 
+    public Transform breakpoint;
     private Rigidbody rb;
     private IEnumerator coroutine;
 

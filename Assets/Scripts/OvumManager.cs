@@ -12,12 +12,12 @@ public class OvumManager : MonoBehaviour {
     void Start()
     {
         numRand = Random.Range(0, 2);
-        numRand = 0;
+        numRand = 0;//force to be left
 
         if (numRand == 0) {
-            leftOvum.setForceTorque(100,300);
+            leftOvum.setForceTorque(150,300);
         } else {
-            rightOvum.setForceTorque(-100,300);
+            rightOvum.setForceTorque(-150,300);
         }
     }
 }
