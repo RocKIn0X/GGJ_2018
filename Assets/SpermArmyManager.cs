@@ -13,12 +13,10 @@ public class SpermArmyManager : MonoBehaviour
     private const float minExplosion = 0, maxExplosion = 0;
 
     private const int numSmartSperm = 10;
-    private const int numNaiveSperm = 100;
+    private const int numNaiveSperm = 150;
 
     private void Awake()
     {
-        
-
         //for (int i = 0; i < numSmartSperm; i++)
         //{
         //    Vector3 spawnPos = spawnPoint.GenerateSpawnPosition();
@@ -38,11 +36,8 @@ public class SpermArmyManager : MonoBehaviour
         //        newBot.InitEssentialValues(leftOvary.position, forceDirection * Random.Range(minExplosion, maxExplosion), Random.Range(minSpeed, maxSpeed));
         //    else
         //        newBot.InitEssentialValues(rightOvary.position, forceDirection * Random.Range(minExplosion, maxExplosion), Random.Range(minSpeed, maxSpeed));
-
         //    newBot.BurstWhenReady();
         //}
-
-
     }
 
     private IEnumerator Start()

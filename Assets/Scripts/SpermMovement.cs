@@ -15,6 +15,9 @@ public class SpermMovement : MonoBehaviour {
     private const float flickSensitivity = 450;
     private const float flickBoost = 5f;
     private const float speedLimit = 6f;
+    private const float maxAngularVelo = 10000;
+    private const float flickAngle = 30f;
+    private const float headAngle = 35f;
 
     private void Awake()
     {
@@ -52,7 +55,7 @@ public class SpermMovement : MonoBehaviour {
             }
         }
 
-        headRotation = Mathf.Clamp(headRotation, -45, 45);
+        headRotation = Mathf.Clamp(headRotation, -headAngle, headAngle);
         
 
         //if (Input.GetKey(KeyCode.D)) {
@@ -61,7 +64,7 @@ public class SpermMovement : MonoBehaviour {
         //    tailRotation -= Time.deltaTime * flickSensitivity;
         //}
 
-        tailRotation = Mathf.Clamp(tailRotation, -45, 45);
+        tailRotation = Mathf.Clamp(tailRotation, -flickAngle, flickAngle);
         //if (headRotation - tailRotation > 0) {
         //    this.transform.position += Vector3.right * 2f * Time.deltaTime;
         //} else if (headRotation - tailRotation < 0) {
@@ -82,7 +85,7 @@ public class SpermMovement : MonoBehaviour {
         Debug.DrawRay(head.transform.position, -head.transform.GetChild(0).transform.up * force*1000, Color.red);
         Debug.DrawRay(tail.transform.position, -tail.transform.GetChild(0).transform.up * force*1000, Color.red);
 
-        bool isFlicking = (tailRotation > -45 && tailRotation < 45);
+        bool isFlicking = (tailRotation > -flickAngle && tailRotation < flickAngle);
         float tailMultiplier = isFlicking? flickBoost : 1;
 
         rigidbody.AddForceAtPosition(head.transform.GetChild(0).transform.up * force * tailMultiplier * Time.deltaTime, head.transform.position);
@@ -102,6 +105,8 @@ public class SpermMovement : MonoBehaviour {
             adjustedVelo = currentVelo;
 
         rigidbody.velocity = adjustedVelo;
+
+        //rigidbody.angularVelocity = new Vector3(rigidbody.angularVelocity.x, Mathf.Clamp(rigidbody.angularVelocity.y, -maxAngularVelo, maxAngularVelo), rigidbody.angularVelocity.z);
     }
 
     public void Die()
