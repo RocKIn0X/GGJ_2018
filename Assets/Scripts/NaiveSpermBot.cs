@@ -66,7 +66,7 @@ public class NaiveSpermBot : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ovum")
         {
-            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 2)
+            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 1.8f)
             {
                 print("skdjfskdhjf");
                 rigidbody.AddForce(collision.transform.forward * 2500);

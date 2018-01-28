@@ -119,10 +119,9 @@ public class SpermMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("player hit : " + collision.gameObject.tag);
         if(collision.gameObject.tag == "Ovum")
         {
-            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 1)
+            if (Vector3.Distance(collision.gameObject.GetComponent<OvumMovement>().breakpoint.transform.position, transform.position) < 1.5f)
             SceneManager.LoadScene("Victory");
             //return;   
         }
