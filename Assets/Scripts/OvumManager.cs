@@ -10,13 +10,14 @@ public class OvumManager : MonoBehaviour {
     void Start()
     {
         numRand = Random.Range(0, 2);
+        numRand = 0;
 
         transform.GetChild(numRand).gameObject.SetActive(true);
         ovum = transform.GetChild(numRand).gameObject.GetComponent<OvumMovement>();
         if (numRand == 0) {
-            ovum.setForce(2500f);
+            ovum.setForce(5000f);
         } else {
-            ovum.setForce(-2500f);
+            ovum.setForce(30000f);
         }
     }
 }
