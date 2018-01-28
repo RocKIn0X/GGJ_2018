@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class OvumMovement : MonoBehaviour {
     public float force;
+    public float torque;
 
     private Rigidbody rb;
     private IEnumerator coroutine;
@@ -16,9 +17,10 @@ public class OvumMovement : MonoBehaviour {
         StartCoroutine(coroutine);
 	}
 
-    public void setForce (float f)
+    public void setForceTorque (float f, float t)
     {
         force = f;
+        torque = t;
     }
 
     IEnumerator ForceToOvum()
@@ -27,15 +29,16 @@ public class OvumMovement : MonoBehaviour {
         {
             yield return new WaitForSeconds(0.1f);
             rb.AddForce(force * Vector3.right * Time.deltaTime);
-            Debug.Log("Add force");
+            rb.AddTorque(Vector3.up*Time.deltaTime*torque);
+
+            LimitVelo();
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void LimitVelo()
     {
-        if (other.gameObject.tag == "OvumCheck")
-        {
-            StopCoroutine(coroutine);
-        }    
+        if (rb.velocity.magnitude > 3)
+            rb.velocity = rb.velocity / rb.velocity.magnitude * 3;
+        rb.angularVelocity = new Vector3(rb.angularVelocity.x, Mathf.Clamp(rb.angularVelocity.y,-20,20), rb.angularVelocity.z);
     }
 }

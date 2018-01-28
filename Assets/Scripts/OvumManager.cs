@@ -6,18 +6,18 @@ public class OvumManager : MonoBehaviour {
     public int numRand;
 
     private OvumMovement ovum;
+    [SerializeField]
+    private OvumMovement leftOvum, rightOvum;
 
     void Start()
     {
         numRand = Random.Range(0, 2);
         numRand = 0;
 
-        transform.GetChild(numRand).gameObject.SetActive(true);
-        ovum = transform.GetChild(numRand).gameObject.GetComponent<OvumMovement>();
         if (numRand == 0) {
-            ovum.setForce(5000f);
+            leftOvum.setForceTorque(100,300);
         } else {
-            ovum.setForce(30000f);
+            rightOvum.setForceTorque(-100,300);
         }
     }
 }
