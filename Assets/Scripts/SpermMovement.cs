@@ -31,8 +31,11 @@ public class SpermMovement : MonoBehaviour {
     }
     
 	void Update () {
-        if (Input.GetKeyDown("R"))
+        if (Input.GetKeyDown("r"))
             SceneManager.LoadScene("TestSpermControl");
+        if(Input.GetKeyDown("o"))
+            SceneManager.LoadScene("Victory");
+            
         
         PushInTailDirection();
         ClampVelocity();

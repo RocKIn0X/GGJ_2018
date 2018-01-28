@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
-    public float timeLimit = 120;
+    public float timeLimit = 10;
     public string prefix = " time left : ";
     private float timeCounter = 0;
     private Text text;
@@ -20,6 +20,8 @@ public class Timer : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown("p"))
+            timeCounter -= 10;
         if(start)
         {
             timeCounter += Time.deltaTime;
@@ -44,6 +46,6 @@ public class Timer : MonoBehaviour {
 
     public string GetTimeLeftString()
     {
-        return prefix + ((timeLimit - timeCounter)/2).ToString("#.##") + " hours";
+        return prefix + ((timeLimit - timeCounter)/(timeLimit/48)).ToString("#.##") + " hours";
     }
 }
