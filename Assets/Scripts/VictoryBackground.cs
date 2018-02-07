@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BgRandom : MonoBehaviour {
+public class VictoryBackground : MonoBehaviour {
     private Image srcImg;
 
     public Sprite winImg;
     public Sprite winImg2;
     void Awake() {
         srcImg = gameObject.GetComponent<Image>();
-        float rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 2);
 
         if (rand == 0) {
             srcImg.sprite = winImg;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tail : MonoBehaviour {
+public class SpermBotTail : MonoBehaviour {
     [SerializeField,Range(-1,1)]
     private float ratio;
     private float xRatio = 0;

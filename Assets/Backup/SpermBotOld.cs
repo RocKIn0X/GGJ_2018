@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class SpermBot : MonoBehaviour 
+public class SpermBotOld : MonoBehaviour 
 {
     [SerializeField]
     private NavMeshAgent agent;
