@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpermArmyManager : MonoBehaviour 
+public class SpermBotGenerator : MonoBehaviour 
 {
     [SerializeField]
     private Transform leftOvary, rightOvary;

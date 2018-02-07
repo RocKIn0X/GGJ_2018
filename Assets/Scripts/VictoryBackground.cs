@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BgRandom : MonoBehaviour {
+public class VictoryBackground : MonoBehaviour {
     private Image srcImg;
 
     public Sprite winImg;
