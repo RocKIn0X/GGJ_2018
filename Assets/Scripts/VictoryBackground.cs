@@ -10,7 +10,7 @@ public class VictoryBackground : MonoBehaviour {
     public Sprite winImg2;
     void Awake() {
         srcImg = gameObject.GetComponent<Image>();
-        float rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 2);
 
         if (rand == 0) {
             srcImg.sprite = winImg;

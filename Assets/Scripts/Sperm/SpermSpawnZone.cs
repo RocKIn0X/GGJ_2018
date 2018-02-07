@@ -16,7 +16,7 @@ public class SpermSpawnZone : MonoBehaviour
         SpawnDetails details = new SpawnDetails();
         details.position = GenerateSpawnPosition();
         details.rotation = CalculateRotation(details.position);
-        details.startForceDirection = CalculateForceDirection(details.position);
+        //details.startForceDirection = CalculateForceDirection(details.position);
 
         return details;
     }

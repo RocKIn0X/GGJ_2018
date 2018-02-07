@@ -7,7 +7,7 @@ public class SpermBotGenerator : MonoBehaviour
     [SerializeField]
     private SpermSpawnZone spawnZone;
     [SerializeField]
-    private NaiveSpermBot naiveSpermBot;
+    private SpermBot spermBotPrefab;
 
     private const int numGenerate = 150;
 
@@ -46,12 +46,13 @@ public class SpermBotGenerator : MonoBehaviour
 
             Vector3 spawnPos = spawnDetails.position;
             Quaternion spawnRot = spawnDetails.rotation;
-            Vector3 spawnDirection = spawnDetails.startForceDirection;
-            Vector3 spawnForce = spawnDirection * Random.Range(minExplosion, maxExplosion);
+            //Vector3 spawnDirection = spawnDetails.startForceDirection;
+            //Vector3 spawnForce = spawnDirection * Random.Range(minExplosion, maxExplosion);
 
-            NaiveSpermBot newBot = Instantiate(naiveSpermBot, spawnPos, spawnRot) as NaiveSpermBot;
-            newBot.InitEssentialValues(spawnForce);
-            newBot.BurstWhenReady();
+            SpermBot newBot = Instantiate(spermBotPrefab, spawnPos, spawnRot) as SpermBot;
+            //newBot.InitEssentialValues(spawnForce);
+            //newBot.BurstWhenReady();
+            newBot.Burst();
 
             yield return new WaitForSeconds(spawnInterval);
         }
