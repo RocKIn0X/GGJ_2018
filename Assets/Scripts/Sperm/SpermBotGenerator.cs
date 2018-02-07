@@ -5,71 +5,55 @@ using UnityEngine;
 public class SpermBotGenerator : MonoBehaviour 
 {
     [SerializeField]
-    private Transform leftOvary, rightOvary;
-    public SpermBot smarpSpermPrefab;
-    public NaiveSpermBot naiveSpermBot;
-    public SpermSpawnPoint spawnPoint;
-    private const float minSpeed = 5, maxSpeed = 15;
+    private SpermSpawnZone spawnZone;
+    [SerializeField]
+    private NaiveSpermBot naiveSpermBot;
+
+    private const int numGenerate = 150;
+
+    private const float startDelay = 2;
+    private const float spawnInterval = 0.01f;
+
     private const float minExplosion = 0, maxExplosion = 0;
 
-    private const int numSmartSperm = 10;
-    private const int numNaiveSperm = 150;
-
+    // =================
+    // behaviours
+    // =================
     private void Awake()
     {
-        //for (int i = 0; i < numSmartSperm; i++)
-        //{
-        //    Vector3 spawnPos = spawnPoint.GenerateSpawnPosition();
-        //    if (usedPosition.Contains(spawnPos))
-        //    {
-        //        i--;
-        //        continue;
-        //    }
-        //    else
-        //        usedPosition.Add(spawnPos);
-
-        //    Quaternion spawnDirection = spawnPoint.CalculateRotation(spawnPos);
-        //    SpermBot newBot = Instantiate(smarpSpermPrefab, spawnPos, spawnDirection) as SpermBot;
-        //    Vector3 forceDirection = spawnPoint.CalculateExplosionDirection(spawnPos);
-
-        //    if (Random.Range(0, 2) == 1)
-        //        newBot.InitEssentialValues(leftOvary.position, forceDirection * Random.Range(minExplosion, maxExplosion), Random.Range(minSpeed, maxSpeed));
-        //    else
-        //        newBot.InitEssentialValues(rightOvary.position, forceDirection * Random.Range(minExplosion, maxExplosion), Random.Range(minSpeed, maxSpeed));
-        //    newBot.BurstWhenReady();
-        //}
+        GenerateSpermBot();
     }
 
-    private IEnumerator Start()
+    //==================
+    // public interface
+    //==================
+    public void GenerateSpermBot()
     {
-        yield return new WaitForSeconds(2);
+        StopAllCoroutines();
+        StartCoroutine(GenerateCoroutine());
+    }
 
-        List<Vector3> usedPosition = new List<Vector3>();
+    //==================
+    // private helper
+    //==================
+    private IEnumerator GenerateCoroutine()
+    {
+        yield return new WaitForSeconds(startDelay);
 
-        for (int i = 0; i < numNaiveSperm; i++)
+        for (int i = 0; i < numGenerate; i++)
         {
-            Vector3 spawnPos = spawnPoint.GenerateSpawnPosition();
-            if (usedPosition.Contains(spawnPos))
-            {
-                i--;
-                continue;
-            }
-            else
-                usedPosition.Add(spawnPos);
+            SpawnDetails spawnDetails = spawnZone.GenerateNewSpawnDetails();
 
-            Quaternion spawnDirection = spawnPoint.CalculateRotation(spawnPos);
-            NaiveSpermBot newBot = Instantiate(naiveSpermBot, spawnPos, spawnDirection) as NaiveSpermBot;
-            Vector3 forceDirection = spawnPoint.CalculateExplosionDirection(spawnPos);
-            print(forceDirection);
+            Vector3 spawnPos = spawnDetails.position;
+            Quaternion spawnRot = spawnDetails.rotation;
+            Vector3 spawnDirection = spawnDetails.startForceDirection;
+            Vector3 spawnForce = spawnDirection * Random.Range(minExplosion, maxExplosion);
 
-            if (Random.Range(0, 2) == 1)
-                newBot.InitEssentialValues(forceDirection * Random.Range(minExplosion, maxExplosion));
-            else
-                newBot.InitEssentialValues(forceDirection * Random.Range(minExplosion, maxExplosion));
-
+            NaiveSpermBot newBot = Instantiate(naiveSpermBot, spawnPos, spawnRot) as NaiveSpermBot;
+            newBot.InitEssentialValues(spawnForce);
             newBot.BurstWhenReady();
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 

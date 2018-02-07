@@ -4650,13 +4650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a890338a0fb74384813594b1d9604f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftOvary: {fileID: 0}
-  rightOvary: {fileID: 0}
-  smarpSpermPrefab: {fileID: 114995026772430408, guid: bc45a9d75378a4596808c94fbe5ba0fc,
-    type: 2}
+  spawnZone: {fileID: 1857045165}
   naiveSpermBot: {fileID: 114427265225986288, guid: 69dc1c185a5fd4e1993b79b342955169,
     type: 2}
-  spawnPoint: {fileID: 1857045165}
 --- !u!1 &908695711
 GameObject:
   m_ObjectHideFlags: 0
